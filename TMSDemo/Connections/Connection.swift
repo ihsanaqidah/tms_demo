@@ -8,17 +8,22 @@
 import Foundation
 import Network
 
+protocol ConnectionDelegate: AnyObject {
+    
+}
+
 class Connection {
 
     let connection: NWConnection
+    weak var delegate: ConnectionDelegate?
 
     // outgoing connection
     init(endpoint: NWEndpoint) {
         print("PeerConnection outgoing endpoint: \(endpoint)")
 
-        let parameters = NWParameters(tls: nil, tcp: .defaultOption)
-        parameters.includePeerToPeer = true
-        connection = NWConnection(to: endpoint, using: parameters)
+        let params = NWParameters(tls: nil, tcp: .defaultOption)
+        params.includePeerToPeer = true
+        connection = NWConnection(to: endpoint, using: params)
         start()
     }
 
@@ -28,12 +33,22 @@ class Connection {
         self.connection = connection
         start()
     }
-
+    
     func start() {
-        connection.stateUpdateHandler = { newState in
-            print("connection.stateUpdateHandler \(newState)")
+        connection.stateUpdateHandler = { [weak self] state in
+            if case .ready = state {
+                self?.receiveData()
+            }
         }
-        connection.start(queue: .main)
+    }
+    
+    private func receiveData() {
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 100) { data, _, _, _ in
+            if let data = data,
+               let message = String(data: data, encoding: .utf8) {
+    
+            }
+            self.onIncomingData()
+        }
     }
 }
-

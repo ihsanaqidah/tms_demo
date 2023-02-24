@@ -29,19 +29,10 @@ class ServerListener {
         listener.stateUpdateHandler = { [weak self] state in
             print("clientListener?.stateUpdateHandler \(state)")
             
-            switch state {
-            case .failed(let error):
+            if case let .failed(error) = state {
                 print("Browser failed: \(error.localizedDescription)")
-            case .ready:
+            } else if case .ready = state {
                 print("Listener ready on \(String(describing: self?.listener.port))")
-            case .setup:
-                break
-            case .cancelled:
-                break
-            case .waiting(_):
-                break
-            @unknown default:
-                break
             }
         }
         
