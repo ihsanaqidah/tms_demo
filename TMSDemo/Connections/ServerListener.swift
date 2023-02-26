@@ -11,18 +11,16 @@ import Network
 class ServerListener {
     
     let listener: NWListener
+    private(set) var connections: [Connection] = []
+    private(set) var delegate: ServerListenerDelegate?
     
-    init() throws {
-        // Customize TCP options to enable keepalives.
-        let tcpOptions = NWProtocolTCP.Options()
-        tcpOptions.enableKeepalive = true
-        tcpOptions.keepaliveIdle = 2
-        
-        let params = NWParameters(tls: nil, tcp: tcpOptions)
+    init(delegate: ServerListenerDelegate?) throws {
+        let params = NWParameters(tls: nil, tcp: .defaultOption)
         params.includePeerToPeer = true
         
-        listener = try NWListener(using: params)
-        listener.service = NWListener.Service(name: "TMS Server", type: "_tms._tcp")
+        self.delegate = delegate
+        self.listener = try NWListener(using: params)
+        self.listener.service = NWListener.Service(name: "TMS Server", type: "_tms._tcp")
     }
     
     func start() {
@@ -36,10 +34,12 @@ class ServerListener {
             }
         }
         
-        // The system calls this when a new connection arrives at the listener.
-        // Start the connection to accept it, cancel to reject it.
-        listener.newConnectionHandler = { connection in
-            print("clientListener?.newConnectionHandler \(connection)")
+        listener.newConnectionHandler = { [weak self] connection in
+            guard let self = self else { return }
+            
+            let newConnection = Connection(connection: connection, delegate: self.delegate)
+            self.connections.append(newConnection)
+            self.delegate?.onIncoming(connections: self.connections)
         }
         
         listener.start(queue: .main)

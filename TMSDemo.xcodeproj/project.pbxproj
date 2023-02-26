@@ -14,10 +14,13 @@
 		2B4A0D8929A5DB97000E2448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8829A5DB97000E2448 /* Assets.xcassets */; };
 		2B4A0D8C29A5DB97000E2448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */; };
 		2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643B29A773120091DC9C /* ServerListener.swift */; };
-		2BF7643E29A773450091DC9C /* BrowserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643D29A773450091DC9C /* BrowserListener.swift */; };
+		2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643D29A773450091DC9C /* ClientListener.swift */; };
 		2BF7644029A775DC0091DC9C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643F29A775DC0091DC9C /* Connection.swift */; };
-		2BF7644229A7E20E0091DC9C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644129A7E20E0091DC9C /* Client.swift */; };
 		2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644329A7EA920091DC9C /* Extensions.swift */; };
+		2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644B29ABB9390091DC9C /* Protocols.swift */; };
+		2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644D29ABBAD20091DC9C /* Browser.swift */; };
+		2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */; };
+		2BF7645229ABBEB30091DC9C /* ViewController+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +33,13 @@
 		2B4A0D8B29A5DB97000E2448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B4A0D8D29A5DB97000E2448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF7643B29A773120091DC9C /* ServerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListener.swift; sourceTree = "<group>"; };
-		2BF7643D29A773450091DC9C /* BrowserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserListener.swift; sourceTree = "<group>"; };
+		2BF7643D29A773450091DC9C /* ClientListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListener.swift; sourceTree = "<group>"; };
 		2BF7643F29A775DC0091DC9C /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
-		2BF7644129A7E20E0091DC9C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		2BF7644329A7EA920091DC9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2BF7644B29ABB9390091DC9C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		2BF7644D29ABBAD20091DC9C /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Client.swift"; sourceTree = "<group>"; };
+		2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Server.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,8 @@
 				2B4A0D7F29A5DB94000E2448 /* AppDelegate.swift */,
 				2B4A0D8129A5DB94000E2448 /* SceneDelegate.swift */,
 				2B4A0D8329A5DB94000E2448 /* ViewController.swift */,
+				2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */,
+				2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */,
 				2B4A0D8529A5DB95000E2448 /* Main.storyboard */,
 				2B4A0D8829A5DB97000E2448 /* Assets.xcassets */,
 				2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */,
@@ -82,10 +90,11 @@
 			isa = PBXGroup;
 			children = (
 				2BF7643B29A773120091DC9C /* ServerListener.swift */,
-				2BF7643D29A773450091DC9C /* BrowserListener.swift */,
+				2BF7643D29A773450091DC9C /* ClientListener.swift */,
 				2BF7643F29A775DC0091DC9C /* Connection.swift */,
-				2BF7644129A7E20E0091DC9C /* Client.swift */,
 				2BF7644329A7EA920091DC9C /* Extensions.swift */,
+				2BF7644B29ABB9390091DC9C /* Protocols.swift */,
+				2BF7644D29ABBAD20091DC9C /* Browser.swift */,
 			);
 			path = Connections;
 			sourceTree = "<group>";
@@ -162,13 +171,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4A0D8429A5DB94000E2448 /* ViewController.swift in Sources */,
-				2BF7644229A7E20E0091DC9C /* Client.swift in Sources */,
+				2BF7645229ABBEB30091DC9C /* ViewController+Server.swift in Sources */,
 				2BF7644029A775DC0091DC9C /* Connection.swift in Sources */,
+				2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */,
 				2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */,
 				2B4A0D8029A5DB94000E2448 /* AppDelegate.swift in Sources */,
 				2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */,
 				2B4A0D8229A5DB94000E2448 /* SceneDelegate.swift in Sources */,
-				2BF7643E29A773450091DC9C /* BrowserListener.swift in Sources */,
+				2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */,
+				2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */,
+				2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +327,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 122;
-				DEVELOPMENT_TEAM = R8EMKFHGH9;
+				DEVELOPMENT_TEAM = MWBUR3RUZA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TMSDemo/Info.plist;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To connect scanners with the middleware";
@@ -330,7 +342,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tiket.design;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.tmsdemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -348,7 +360,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 122;
-				DEVELOPMENT_TEAM = R8EMKFHGH9;
+				DEVELOPMENT_TEAM = MWBUR3RUZA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TMSDemo/Info.plist;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To connect scanners with the middleware";
@@ -363,7 +375,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tiket.design;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.tmsdemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

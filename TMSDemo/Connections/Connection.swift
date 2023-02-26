@@ -8,47 +8,84 @@
 import Foundation
 import Network
 
-protocol ConnectionDelegate: AnyObject {
-    
-}
-
 class Connection {
-
-    let connection: NWConnection
-    weak var delegate: ConnectionDelegate?
-
+    
+    private let connection: NWConnection
+    var delegate: ConnectionDelegate?
+    
+    var endpoint: NWEndpoint {
+        connection.endpoint
+    }
+    
+    var service: (name: String, type: String, domain: String, interface: NWInterface?)? {
+        if case let NWEndpoint.service(name, type, domain, interface) = connection.endpoint {
+            return (name: name, type: type, domain: domain, interface: interface)
+        }
+        return nil
+    }
+    
+    var serviceName: String? {
+        if case let NWEndpoint.service(name, _, _, _) = connection.endpoint {
+            return name
+        }
+        return nil
+    }
+    
     // outgoing connection
-    init(endpoint: NWEndpoint) {
-        print("PeerConnection outgoing endpoint: \(endpoint)")
-
+    init(endpoint: NWEndpoint, delegate: ConnectionDelegate?) {
         let params = NWParameters(tls: nil, tcp: .defaultOption)
         params.includePeerToPeer = true
-        connection = NWConnection(to: endpoint, using: params)
+        
+        self.delegate = delegate
+        self.connection = NWConnection(to: endpoint, using: params)
         start()
     }
-
+    
     // incoming connection
-    init(connection: NWConnection) {
-        print("PeerConnection incoming connection: \(connection)")
+    init(connection: NWConnection, delegate: ConnectionDelegate?) {
+        self.delegate = delegate
         self.connection = connection
         start()
     }
     
     func start() {
         connection.stateUpdateHandler = { [weak self] state in
-            if case .ready = state {
+            print("Connection incoming: \(state)")
+            
+            switch state {
+            case .setup:
+                break
+            case .waiting(_):
+                break
+            case .preparing:
+                break
+            case .ready:
                 self?.receiveData()
+            case .failed(let e):
+                print("connection failed: \(e.localizedDescription)")
+            case .cancelled:
+                break
+            @unknown default:
+                break
             }
+        }
+        
+        connection.start(queue: .main)
+    }
+    
+    func receiveData() {
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 100) { [weak self] data, _, _, _ in
+            if let data = data,
+               let message = String(data: data, encoding: .utf8) {
+                self?.delegate?.onIncoming(string: message)
+            }
+            self?.receiveData()
         }
     }
     
-    private func receiveData() {
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 100) { data, _, _, _ in
-            if let data = data,
-               let message = String(data: data, encoding: .utf8) {
-    
-            }
-            self.onIncomingData()
-        }
+    func send(string: String) {
+        connection.send(content: string.data(using: .utf8), contentContext: .defaultMessage, isComplete: true, completion: .contentProcessed({ error in
+            print("Connection.send \(String(describing: error?.localizedDescription))")
+        }))
     }
 }
