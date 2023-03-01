@@ -20,7 +20,7 @@ class ServerListener {
         
         self.delegate = delegate
         self.listener = try NWListener(using: params)
-        self.listener.service = NWListener.Service(name: "TMS Server", type: "_tms._tcp")
+        self.listener.service = NWListener.Service(name: "TMS Server", type: "_tms._tcp", domain: ".local")
     }
     
     func start() {

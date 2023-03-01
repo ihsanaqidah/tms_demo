@@ -16,7 +16,7 @@ class Browser {
         let params = NWParameters()
         params.includePeerToPeer = true
         
-        self.browser = NWBrowser(for: .bonjour(type: "_tms._tcp", domain: nil), using: params)
+        self.browser = NWBrowser(for: .bonjour(type: "_tms._tcp", domain: ".local"), using: params)
     }
     
     func start(completion: @escaping (NWBrowser.Result) -> Void) {
