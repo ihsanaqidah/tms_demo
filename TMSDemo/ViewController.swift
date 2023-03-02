@@ -5,7 +5,7 @@ import Swifter
 let MESSAGE = """
     {"barcodeId": "\(UUID().uuidString)"}
     """
-let SERVICE_NAME = "_http._tcp"
+let SERVICE_NAME = "_tms._tcp"
 
 class ViewController: UIViewController {
     
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
             
             sender.setTitle("Start httServer", for: .normal)
         } else {
-            try? serverListener?.httpServer?.start(8080)
+            try? serverListener?.httpServer?.start()
             
             sender.setTitle("Stop httServer", for: .normal)
         }

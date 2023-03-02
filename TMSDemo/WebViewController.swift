@@ -30,7 +30,7 @@ class WebViewController: UIViewController {
         
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
-        print(request)
+        print("#URLRequest: \(request)")
         webview.load(request)
     }
 }

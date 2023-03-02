@@ -44,7 +44,7 @@ class ServerListener {
                                      </html>
             """))
             }
-            try httpServer?.start(8080, forceIPv4: true)
+            try httpServer?.start()
         } catch let e {
             print("something error on httServer")
             print(e.localizedDescription)
