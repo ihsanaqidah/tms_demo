@@ -18,9 +18,11 @@
 		2BF7644029A775DC0091DC9C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643F29A775DC0091DC9C /* Connection.swift */; };
 		2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644329A7EA920091DC9C /* Extensions.swift */; };
 		2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644B29ABB9390091DC9C /* Protocols.swift */; };
-		2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644D29ABBAD20091DC9C /* Browser.swift */; };
 		2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */; };
 		2BF7645229ABBEB30091DC9C /* ViewController+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */; };
+		2BF7646029AF2E000091DC9C /* BonjourResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7645F29AF2E000091DC9C /* BonjourResolver.swift */; };
+		2BF7646329AF9D450091DC9C /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF7646229AF9D450091DC9C /* Swifter */; };
+		2BF7646529AFBEC20091DC9C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7646429AFBEC20091DC9C /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +39,10 @@
 		2BF7643F29A775DC0091DC9C /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		2BF7644329A7EA920091DC9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2BF7644B29ABB9390091DC9C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		2BF7644D29ABBAD20091DC9C /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
 		2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Client.swift"; sourceTree = "<group>"; };
 		2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Server.swift"; sourceTree = "<group>"; };
+		2BF7645F29AF2E000091DC9C /* BonjourResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourResolver.swift; sourceTree = "<group>"; };
+		2BF7646429AFBEC20091DC9C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF7646329AF9D450091DC9C /* Swifter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +82,7 @@
 				2B4A0D8329A5DB94000E2448 /* ViewController.swift */,
 				2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */,
 				2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */,
+				2BF7646429AFBEC20091DC9C /* WebViewController.swift */,
 				2B4A0D8529A5DB95000E2448 /* Main.storyboard */,
 				2B4A0D8829A5DB97000E2448 /* Assets.xcassets */,
 				2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */,
@@ -94,7 +99,7 @@
 				2BF7643F29A775DC0091DC9C /* Connection.swift */,
 				2BF7644329A7EA920091DC9C /* Extensions.swift */,
 				2BF7644B29ABB9390091DC9C /* Protocols.swift */,
-				2BF7644D29ABBAD20091DC9C /* Browser.swift */,
+				2BF7645F29AF2E000091DC9C /* BonjourResolver.swift */,
 			);
 			path = Connections;
 			sourceTree = "<group>";
@@ -115,6 +120,9 @@
 			dependencies = (
 			);
 			name = TMSDemo;
+			packageProductDependencies = (
+				2BF7646229AF9D450091DC9C /* Swifter */,
+			);
 			productName = TMSDemo;
 			productReference = 2B4A0D7C29A5DB94000E2448 /* TMSDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -143,6 +151,9 @@
 				Base,
 			);
 			mainGroup = 2B4A0D7329A5DB94000E2448;
+			packageReferences = (
+				2BF7646129AF9D450091DC9C /* XCRemoteSwiftPackageReference "swifter" */,
+			);
 			productRefGroup = 2B4A0D7D29A5DB94000E2448 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -171,15 +182,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4A0D8429A5DB94000E2448 /* ViewController.swift in Sources */,
+				2BF7646029AF2E000091DC9C /* BonjourResolver.swift in Sources */,
 				2BF7645229ABBEB30091DC9C /* ViewController+Server.swift in Sources */,
 				2BF7644029A775DC0091DC9C /* Connection.swift in Sources */,
-				2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */,
 				2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */,
 				2B4A0D8029A5DB94000E2448 /* AppDelegate.swift in Sources */,
 				2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */,
 				2B4A0D8229A5DB94000E2448 /* SceneDelegate.swift in Sources */,
 				2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */,
 				2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */,
+				2BF7646529AFBEC20091DC9C /* WebViewController.swift in Sources */,
 				2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +420,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2BF7646129AF9D450091DC9C /* XCRemoteSwiftPackageReference "swifter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BF7646229AF9D450091DC9C /* Swifter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BF7646129AF9D450091DC9C /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B4A0D7429A5DB94000E2448 /* Project object */;
 }

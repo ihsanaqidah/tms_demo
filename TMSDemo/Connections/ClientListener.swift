@@ -10,24 +10,44 @@ import Network
 
 class ClientListener {
     
-    private let browser = Browser()
+    private let browser: NWBrowser
     private(set) var connection: Connection?
     var delegate: ClientListenerDelegate?
     
     init(delegate: ClientListenerDelegate?) {
+        let params = NWParameters()
+        params.includePeerToPeer = true
+        self.browser = NWBrowser(for: .bonjour(type: SERVICE_NAME, domain: nil), using: params)
         self.delegate = delegate
     }
     
     func start() {
-        browser.start { [weak self] result in
+        browser.stateUpdateHandler = { state in
+            print("Browser.start(completion:) with \(state)")
+        }
+        
+        browser.browseResultsChangedHandler = { [weak self] results, changes in
             guard let self = self else { return }
             
-            self.connection = Connection(endpoint: result.endpoint, delegate: self.delegate)
-            self.delegate?.onIncoming(connection: self.connection)
+            for result in results {
+                if case NWEndpoint.service(name: _, type: _, domain: _, interface: _) = result.endpoint {
+                    print(result.endpoint.debugDescription)
+
+                    self.connection = Connection(endpoint: result.endpoint, delegate: self)
+                    self.delegate?.onIncoming(connection: self.connection)
+                }
+            }
         }
+        browser.start(queue: .main)
     }
     
     func stop() {
-        browser.stop()
+        browser.cancel()
+    }
+}
+
+extension ClientListener: ConnectionDelegate {
+    func onIncoming(string: String) {
+        delegate?.onIncoming(string: string)
     }
 }

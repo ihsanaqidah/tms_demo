@@ -13,7 +13,7 @@ class Connection {
     private let connection: NWConnection
     var delegate: ConnectionDelegate?
     
-    var endpoint: NWEndpoint {
+    var endpoint: NWEndpoint? {
         connection.endpoint
     }
     
@@ -74,7 +74,7 @@ class Connection {
     }
     
     func receiveData() {
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 100) { [weak self] data, _, _, _ in
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 65536) { [weak self] data, _, _, _ in
             if let data = data,
                let message = String(data: data, encoding: .utf8) {
                 self?.delegate?.onIncoming(string: message)

@@ -12,6 +12,7 @@ extension ViewController: ClientListenerDelegate {
     
     func onIncoming(connection: Connection?) {
         clientConnection = connection
+        print("#connection set: \(String(describing: connection?.endpoint?.debugDescription))")
         updateClientBtn()
     }
 }

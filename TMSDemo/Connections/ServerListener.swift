@@ -7,10 +7,13 @@
 
 import Foundation
 import Network
+import Swifter
 
 class ServerListener {
     
     let listener: NWListener
+    var service: NetService?
+    var httpServer: HttpServer?
     private(set) var connections: [Connection] = []
     private(set) var delegate: ServerListenerDelegate?
     
@@ -20,10 +23,33 @@ class ServerListener {
         
         self.delegate = delegate
         self.listener = try NWListener(using: params)
-        self.listener.service = NWListener.Service(name: "TMS Server", type: "_tms._tcp", domain: ".local")
+        self.listener.service = NWListener.Service(name: "TMS Server", type: SERVICE_NAME)
     }
     
     func start() {
+        do {
+            httpServer?["/barcode"] = { request in
+                print(request)
+                return HttpResponse.ok(.json("{\"success\": true}"))
+//                return HttpResponse.ok(.htmlBody("You resquest \(request)"))
+            }
+            httpServer?["/browser"] = { request in
+                print(request)
+                return .ok(.htmlBody("""
+                                     <html>
+                                     <body>
+                                     <h1>Hello Browser.</h1>
+                                     <p>You resquest has been loaded!</p>
+                                     </body>
+                                     </html>
+            """))
+            }
+            try httpServer?.start(8080, forceIPv4: true)
+        } catch let e {
+            print("something error on httServer")
+            print(e.localizedDescription)
+        }
+        
         listener.stateUpdateHandler = { [weak self] state in
             print("clientListener?.stateUpdateHandler \(state)")
             
@@ -31,13 +57,20 @@ class ServerListener {
                 print("Browser failed: \(error.localizedDescription)")
             } else if case .ready = state {
                 print("Listener ready on \(String(describing: self?.listener.port))")
+                
+                let port = self?.listener.port?.rawValue ?? 0
+                print("Listener started on port \(port)")
+                
+                // Advertise the service using Bonjour
+                self?.service = NetService(domain: "local.", type: SERVICE_NAME, name: "TMS Server", port: Int32(port))
+                self?.service?.publish()
             }
         }
         
         listener.newConnectionHandler = { [weak self] connection in
             guard let self = self else { return }
             
-            let newConnection = Connection(connection: connection, delegate: self.delegate)
+            let newConnection = Connection(connection: connection, delegate: self)
             self.connections.append(newConnection)
             self.delegate?.onIncoming(connections: self.connections)
         }
@@ -47,5 +80,13 @@ class ServerListener {
     
     func stop() {
         listener.cancel()
+        httpServer?.stop()
+        service?.stop()
+    }
+}
+
+extension ServerListener: ConnectionDelegate {
+    func onIncoming(string: String) {
+        delegate?.onIncoming(string: string)
     }
 }

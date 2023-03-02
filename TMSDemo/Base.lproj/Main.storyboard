@@ -44,10 +44,10 @@
                                             <action selector="didTapServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="75w-yM-J9Y"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrJ-on-KU4">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrJ-on-KU4">
                                         <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="50"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Connect to Server..."/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Connect to Server"/>
                                         <connections>
                                             <action selector="didTapClient:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sig-OB-RQe"/>
                                         </connections>
@@ -57,8 +57,32 @@
                                     <constraint firstAttribute="height" constant="50" id="goq-Kr-RqQ"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3X-B4-Iqm">
+                                <rect key="frame" x="0.0" y="153" width="393" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-LB-kY3">
+                                        <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Message to Client"/>
+                                        <connections>
+                                            <action selector="didTapMessageToClient:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5T-Xw-9iI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4R-iT-S6F">
+                                        <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Message to Server"/>
+                                        <connections>
+                                            <action selector="didTapMessageToServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IaA-7d-wmZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AvU-tB-0Wr"/>
+                                </constraints>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XwN-Dc-P1g">
-                                <rect key="frame" x="0.0" y="165" width="393" height="603"/>
+                                <rect key="frame" x="0.0" y="203" width="393" height="565"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" textLabel="ETE-NK-Php" style="IBUITableViewCellStyleDefault" id="UZm-Ca-CLA">
@@ -104,50 +128,62 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3X-B4-Iqm">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ve-Dv-PGO">
                                 <rect key="frame" x="0.0" y="768" width="393" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-LB-kY3">
-                                        <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4q-Iq-xcW">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Message to Client"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Stop HttpServer"/>
                                         <connections>
-                                            <action selector="didTapMessageToClient:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5T-Xw-9iI"/>
+                                            <action selector="didTapStopHttpserver:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x9c-CC-9wb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4R-iT-S6F">
-                                        <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3H-8V-nXU">
+                                        <rect key="frame" x="131" y="0.0" width="131" height="50"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Message to Server"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open httpServer webview"/>
                                         <connections>
-                                            <action selector="didTapMessageToServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IaA-7d-wmZ"/>
+                                            <action selector="didTapOpenWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fm-Nn-eWu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA3-La-d8A">
+                                        <rect key="frame" x="262" y="0.0" width="131" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Message to httpServer"/>
+                                        <connections>
+                                            <action selector="messageToHttpserver:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EdF-Yz-54b"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="AvU-tB-0Wr"/>
+                                    <constraint firstAttribute="height" constant="50" id="TnT-xW-TDA"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3ve-Dv-PGO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Nf-XM-lTT"/>
+                            <constraint firstItem="XwN-Dc-P1g" firstAttribute="top" secondItem="H3X-B4-Iqm" secondAttribute="bottom" id="57U-56-nG9"/>
                             <constraint firstItem="guI-0A-iv9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Aod-gK-0lU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3ve-Dv-PGO" secondAttribute="bottom" id="CC6-yE-F4n"/>
                             <constraint firstItem="guI-0A-iv9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ipa-3V-v9f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XwN-Dc-P1g" secondAttribute="trailing" id="MWN-Xw-e29"/>
+                            <constraint firstItem="3ve-Dv-PGO" firstAttribute="top" secondItem="XwN-Dc-P1g" secondAttribute="bottom" id="PLH-je-VP6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="guI-0A-iv9" secondAttribute="trailing" id="fnz-UE-dBW"/>
+                            <constraint firstItem="H3X-B4-Iqm" firstAttribute="top" secondItem="guI-0A-iv9" secondAttribute="bottom" id="iEz-nP-ecC"/>
                             <constraint firstItem="XwN-Dc-P1g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iPG-Aj-Yw1"/>
-                            <constraint firstItem="XwN-Dc-P1g" firstAttribute="top" secondItem="guI-0A-iv9" secondAttribute="bottom" constant="12" id="mUs-to-0OW"/>
                             <constraint firstItem="H3X-B4-Iqm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nvk-9f-8Qc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H3X-B4-Iqm" secondAttribute="trailing" id="oYP-gy-Blp"/>
-                            <constraint firstItem="H3X-B4-Iqm" firstAttribute="top" secondItem="XwN-Dc-P1g" secondAttribute="bottom" id="phL-LF-93Z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="H3X-B4-Iqm" secondAttribute="bottom" id="s4i-fb-RWg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3ve-Dv-PGO" secondAttribute="trailing" id="yw8-vS-Wnn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Discovery devices" id="8EK-Xu-IzZ"/>
                     <connections>
                         <outlet property="clientBtn" destination="PrJ-on-KU4" id="143-lM-KJ2"/>
-                        <outlet property="serverBtn" destination="CVy-m5-IC6" id="eza-9W-C2W"/>
+                        <outlet property="sendHttpServerBtn" destination="jA3-La-d8A" id="qlH-em-c0y"/>
+                        <outlet property="serverBtn" destination="CVy-m5-IC6" id="J8Q-Sq-fQM"/>
                         <outlet property="tableView" destination="XwN-Dc-P1g" id="mhS-Qs-tiR"/>
                     </connections>
                 </viewController>
