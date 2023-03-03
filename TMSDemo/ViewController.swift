@@ -45,6 +45,7 @@ class ViewController: UIViewController {
             serverListener?.start()
         } else {
             serverListener?.stop()
+            serverListConnection = []
         }
     }
     
@@ -95,6 +96,11 @@ class ViewController: UIViewController {
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
         }
+    }
+    
+    @IBAction func didTapCustomWebview(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "customWebview")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func updateServerBtn() {
@@ -163,7 +169,7 @@ class ViewController: UIViewController {
         if let endpoint = connection?.endpoint,
            case NWEndpoint.service(name: _, type: _, domain: _, interface: _) = endpoint {
             
-            let service = NetService(domain: "local.", type: SERVICE_NAME, name: "TMS Server")
+            let service = NetService(domain: "", type: SERVICE_NAME, name: "TMS Server")
             BonjourResolver.resolve(service: service) { result in
                 switch result {
                 case .success(let host):
@@ -191,13 +197,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        
-        var service: String?
         if let endpoint = serverListConnection[indexPath.row].endpoint,
-           case let NWEndpoint.service(name, _, _, _) = endpoint {
-            service = name
+           case NWEndpoint.service(_, _, _, _) = endpoint {
             
-            cell.textLabel?.text = "\(String(describing: service))"
+            cell.textLabel?.text = "\(String(describing: endpoint.debugDescription))"
             cell.detailTextLabel?.text = "\(String(describing: endpoint))"
         } else {
             cell.textLabel?.text = nil

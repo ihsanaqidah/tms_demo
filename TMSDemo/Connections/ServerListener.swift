@@ -13,7 +13,7 @@ class ServerListener {
     
     let listener: NWListener
     var service: NetService?
-    var httpServer: HttpServer?
+    var httpServer: HttpServer? = HttpServer()
     private(set) var connections: [Connection] = []
     private(set) var delegate: ServerListenerDelegate?
     
@@ -62,13 +62,18 @@ class ServerListener {
                 print("Listener started on port \(port)")
                 
                 // Advertise the service using Bonjour
-                self?.service = NetService(domain: "local.", type: SERVICE_NAME, name: "TMS Server", port: Int32(port))
+                self?.service = NetService(domain: "", type: SERVICE_NAME, name: "TMS Server", port: Int32(port))
                 self?.service?.publish()
             }
         }
         
         listener.newConnectionHandler = { [weak self] connection in
             guard let self = self else { return }
+            
+            if case let NWEndpoint.service(name, _, _, _) = connection.endpoint {
+                print(name)
+                print(connection.endpoint)
+            }
             
             let newConnection = Connection(connection: connection, delegate: self)
             self.connections.append(newConnection)

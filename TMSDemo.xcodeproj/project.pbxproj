@@ -23,6 +23,7 @@
 		2BF7646029AF2E000091DC9C /* BonjourResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7645F29AF2E000091DC9C /* BonjourResolver.swift */; };
 		2BF7646329AF9D450091DC9C /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 2BF7646229AF9D450091DC9C /* Swifter */; };
 		2BF7646529AFBEC20091DC9C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7646429AFBEC20091DC9C /* WebViewController.swift */; };
+		2BF7646729B180D10091DC9C /* CustomWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7646629B180D10091DC9C /* CustomWebviewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Server.swift"; sourceTree = "<group>"; };
 		2BF7645F29AF2E000091DC9C /* BonjourResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourResolver.swift; sourceTree = "<group>"; };
 		2BF7646429AFBEC20091DC9C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		2BF7646629B180D10091DC9C /* CustomWebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				2B4A0D8829A5DB97000E2448 /* Assets.xcassets */,
 				2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */,
 				2B4A0D8D29A5DB97000E2448 /* Info.plist */,
+				2BF7646629B180D10091DC9C /* CustomWebviewController.swift */,
 			);
 			path = TMSDemo;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */,
 				2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */,
 				2BF7646529AFBEC20091DC9C /* WebViewController.swift in Sources */,
+				2BF7646729B180D10091DC9C /* CustomWebviewController.swift in Sources */,
 				2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

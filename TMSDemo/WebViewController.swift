@@ -28,7 +28,7 @@ class WebViewController: UIViewController {
         view.addSubview(webview)
         webview.frame = view.bounds
         
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         print("#URLRequest: \(request)")
         webview.load(request)

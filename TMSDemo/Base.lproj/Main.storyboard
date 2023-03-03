@@ -132,27 +132,51 @@
                                 <rect key="frame" x="0.0" y="768" width="393" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4q-Iq-xcW">
-                                        <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Stop HttpServer"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Stop HttpServer"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Stop HttpServer">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="didTapStopHttpserver:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x9c-CC-9wb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3H-8V-nXU">
-                                        <rect key="frame" x="131" y="0.0" width="131" height="50"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Open httpServer webview"/>
+                                        <rect key="frame" x="98.333333333333343" y="0.0" width="98.333333333333343" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Open httpServer webview"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open httpServer webview">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="didTapOpenWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fm-Nn-eWu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA3-La-d8A">
-                                        <rect key="frame" x="262" y="0.0" width="131" height="50"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Message to httpServer"/>
+                                        <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Message to httpServer"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Message to httpServer">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="messageToHttpserver:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EdF-Yz-54b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nd6-Bt-CUa">
+                                        <rect key="frame" x="294.66666666666669" y="0.0" width="98.333333333333314" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="custom webview">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapCustomWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3cv-eL-IvM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -190,6 +214,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
+        </scene>
+        <!--Custom Webview Controller-->
+        <scene sceneID="aUw-8d-cS4">
+            <objects>
+                <viewController storyboardIdentifier="customWebview" id="xoU-1s-3vx" customClass="CustomWebviewController" customModule="TMSDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3IB-IS-8eg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nUC-c5-gxm">
+                                <rect key="frame" x="0.0" y="59" width="298" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nTP-gw-uvZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="on8-JF-kdJ">
+                                <rect key="frame" x="318" y="61.666666666666657" width="75" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="PkJ-XE-DGt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="didTapButton:" destination="xoU-1s-3vx" eventType="touchUpInside" id="afc-XL-imy"/>
+                                </connections>
+                            </button>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5w-yG-FdB">
+                                <rect key="frame" x="0.0" y="99" width="393" height="719"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tf6-0h-mVR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Tf6-0h-mVR" firstAttribute="bottom" secondItem="l5w-yG-FdB" secondAttribute="bottom" id="NeI-8g-wfq"/>
+                            <constraint firstItem="Tf6-0h-mVR" firstAttribute="trailing" secondItem="on8-JF-kdJ" secondAttribute="trailing" id="NtU-ZI-TOI"/>
+                            <constraint firstItem="on8-JF-kdJ" firstAttribute="leading" secondItem="nUC-c5-gxm" secondAttribute="trailing" constant="20" id="PJL-nl-XH9"/>
+                            <constraint firstItem="l5w-yG-FdB" firstAttribute="top" secondItem="nUC-c5-gxm" secondAttribute="bottom" id="Qql-sF-HzM"/>
+                            <constraint firstItem="nUC-c5-gxm" firstAttribute="top" secondItem="Tf6-0h-mVR" secondAttribute="top" id="Y2a-Gl-fci"/>
+                            <constraint firstItem="l5w-yG-FdB" firstAttribute="leading" secondItem="Tf6-0h-mVR" secondAttribute="leading" id="ZdG-h2-spt"/>
+                            <constraint firstItem="on8-JF-kdJ" firstAttribute="centerY" secondItem="nUC-c5-gxm" secondAttribute="centerY" id="b0v-tr-l5d"/>
+                            <constraint firstItem="Tf6-0h-mVR" firstAttribute="trailing" secondItem="l5w-yG-FdB" secondAttribute="trailing" id="kvU-k5-ieS"/>
+                            <constraint firstItem="nUC-c5-gxm" firstAttribute="leading" secondItem="Tf6-0h-mVR" secondAttribute="leading" id="yhu-2k-359"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textfield" destination="nUC-c5-gxm" id="l1y-Tb-k03"/>
+                        <outlet property="webview" destination="l5w-yG-FdB" id="2RK-15-1VH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NhZ-ae-s4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896.94656488549617" y="4.9295774647887329"/>
         </scene>
     </scenes>
     <resources>

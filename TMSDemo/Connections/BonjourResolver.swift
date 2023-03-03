@@ -71,18 +71,20 @@ final class BonjourResolver: NSObject, NetServiceDelegate {
     }
     
     func netServiceDidResolveAddress(_ sender: NetService) {
-        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-        guard let data = sender.addresses?.first else { return }
-        data.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> Void in
-                let sockaddrPtr = pointer.bindMemory(to: sockaddr.self)
-                guard let unsafePtr = sockaddrPtr.baseAddress else { return }
-                guard getnameinfo(unsafePtr, socklen_t(data.count), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 else {
-                    return
-                }
-            }
-        let ipAddress = String(cString:hostname)
+//        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+//        guard let data = sender.addresses?.first else { return }
+//        data.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> Void in
+//                let sockaddrPtr = pointer.bindMemory(to: sockaddr.self)
+//                guard let unsafePtr = sockaddrPtr.baseAddress else { return }
+//                guard getnameinfo(unsafePtr, socklen_t(data.count), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 else {
+//                    return
+//                }
+//            }
+//        let ipAddress = String(cString: hostname)
+//        print("#resolve endpoint \(ipAddress):\(sender.port)")
+//        self.stop(with: .success((ipAddress, sender.port)))
         
-        self.stop(with: .success((ipAddress, sender.port)))
+        self.stop(with: .success((sender.hostName!, sender.port)))
     }
     
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
