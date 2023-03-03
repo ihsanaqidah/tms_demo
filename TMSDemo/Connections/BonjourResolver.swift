@@ -84,7 +84,11 @@ final class BonjourResolver: NSObject, NetServiceDelegate {
 //        print("#resolve endpoint \(ipAddress):\(sender.port)")
 //        self.stop(with: .success((ipAddress, sender.port)))
         
-        self.stop(with: .success((sender.hostName!, sender.port)))
+//        self.stop(with: .success((sender.hostName!, sender.port)))
+        
+        guard let data = sender.addresses else { return }
+        let ip = getIPV4StringfromAddress(address: data)
+        self.stop(with: .success((ip, sender.port)))
     }
     
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
@@ -94,4 +98,24 @@ final class BonjourResolver: NSObject, NetServiceDelegate {
         let error = NSError(domain: NetService.errorDomain, code: code.rawValue, userInfo: nil)
         self.stop(with: .failure(error))
     }
+    
+    func getIPV4StringfromAddress(address: [Data]) -> String{
+            let data = address.first! as NSData;
+
+            var ip1 = UInt8(0)
+            data.getBytes(&ip1, range: NSMakeRange(4, 1))
+
+            var ip2 = UInt8(0)
+            data.getBytes(&ip2, range: NSMakeRange(5, 1))
+
+            var ip3 = UInt8(0)
+            data.getBytes(&ip3, range: NSMakeRange(6, 1))
+
+            var ip4 = UInt8(0)
+            data.getBytes(&ip4, range: NSMakeRange(7, 1))
+
+            let ipStr = String(format: "%d.%d.%d.%d",ip1,ip2,ip3,ip4);
+
+            return ipStr;
+        }
 }
