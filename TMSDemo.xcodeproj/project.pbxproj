@@ -7,23 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0612EC29B1C93D002C5AC4 /* GCDWebServer in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0612EB29B1C93D002C5AC4 /* GCDWebServer */; };
+		2B0612EE29B1C992002C5AC4 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0612ED29B1C992002C5AC4 /* Server.swift */; };
+		2B1AFBC429B1CF190012CD7E /* WebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AFBC329B1CF190012CD7E /* WebviewController.swift */; };
 		2B4A0D8029A5DB94000E2448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A0D7F29A5DB94000E2448 /* AppDelegate.swift */; };
 		2B4A0D8229A5DB94000E2448 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8129A5DB94000E2448 /* SceneDelegate.swift */; };
 		2B4A0D8429A5DB94000E2448 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8329A5DB94000E2448 /* ViewController.swift */; };
 		2B4A0D8729A5DB95000E2448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8529A5DB95000E2448 /* Main.storyboard */; };
 		2B4A0D8929A5DB97000E2448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8829A5DB97000E2448 /* Assets.xcassets */; };
 		2B4A0D8C29A5DB97000E2448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */; };
-		2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643B29A773120091DC9C /* ServerListener.swift */; };
-		2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643D29A773450091DC9C /* ClientListener.swift */; };
+		2B4CE30C29B1D21300F48887 /* BonjourResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4CE30B29B1D21300F48887 /* BonjourResolver.swift */; };
+		2BF7643E29A773450091DC9C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643D29A773450091DC9C /* Client.swift */; };
 		2BF7644029A775DC0091DC9C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643F29A775DC0091DC9C /* Connection.swift */; };
 		2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644329A7EA920091DC9C /* Extensions.swift */; };
 		2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644B29ABB9390091DC9C /* Protocols.swift */; };
 		2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644D29ABBAD20091DC9C /* Browser.swift */; };
-		2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */; };
-		2BF7645229ABBEB30091DC9C /* ViewController+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B0612ED29B1C992002C5AC4 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		2B1AFBC329B1CF190012CD7E /* WebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewController.swift; sourceTree = "<group>"; };
 		2B4A0D7C29A5DB94000E2448 /* TMSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4A0D7F29A5DB94000E2448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B4A0D8129A5DB94000E2448 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,14 +35,12 @@
 		2B4A0D8829A5DB97000E2448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B4A0D8B29A5DB97000E2448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B4A0D8D29A5DB97000E2448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BF7643B29A773120091DC9C /* ServerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListener.swift; sourceTree = "<group>"; };
-		2BF7643D29A773450091DC9C /* ClientListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListener.swift; sourceTree = "<group>"; };
+		2B4CE30B29B1D21300F48887 /* BonjourResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourResolver.swift; sourceTree = "<group>"; };
+		2BF7643D29A773450091DC9C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		2BF7643F29A775DC0091DC9C /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		2BF7644329A7EA920091DC9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2BF7644B29ABB9390091DC9C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		2BF7644D29ABBAD20091DC9C /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
-		2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Client.swift"; sourceTree = "<group>"; };
-		2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Server.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0612EC29B1C93D002C5AC4 /* GCDWebServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +78,11 @@
 				2B4A0D7F29A5DB94000E2448 /* AppDelegate.swift */,
 				2B4A0D8129A5DB94000E2448 /* SceneDelegate.swift */,
 				2B4A0D8329A5DB94000E2448 /* ViewController.swift */,
-				2BF7644F29ABBE7F0091DC9C /* ViewController+Client.swift */,
-				2BF7645129ABBEB30091DC9C /* ViewController+Server.swift */,
 				2B4A0D8529A5DB95000E2448 /* Main.storyboard */,
 				2B4A0D8829A5DB97000E2448 /* Assets.xcassets */,
 				2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */,
 				2B4A0D8D29A5DB97000E2448 /* Info.plist */,
+				2B1AFBC329B1CF190012CD7E /* WebviewController.swift */,
 			);
 			path = TMSDemo;
 			sourceTree = "<group>";
@@ -89,12 +90,13 @@
 		2BF7643A29A772D90091DC9C /* Connections */ = {
 			isa = PBXGroup;
 			children = (
-				2BF7643B29A773120091DC9C /* ServerListener.swift */,
-				2BF7643D29A773450091DC9C /* ClientListener.swift */,
+				2B4CE30B29B1D21300F48887 /* BonjourResolver.swift */,
+				2BF7644D29ABBAD20091DC9C /* Browser.swift */,
+				2BF7643D29A773450091DC9C /* Client.swift */,
 				2BF7643F29A775DC0091DC9C /* Connection.swift */,
 				2BF7644329A7EA920091DC9C /* Extensions.swift */,
 				2BF7644B29ABB9390091DC9C /* Protocols.swift */,
-				2BF7644D29ABBAD20091DC9C /* Browser.swift */,
+				2B0612ED29B1C992002C5AC4 /* Server.swift */,
 			);
 			path = Connections;
 			sourceTree = "<group>";
@@ -115,6 +117,9 @@
 			dependencies = (
 			);
 			name = TMSDemo;
+			packageProductDependencies = (
+				2B0612EB29B1C93D002C5AC4 /* GCDWebServer */,
+			);
 			productName = TMSDemo;
 			productReference = 2B4A0D7C29A5DB94000E2448 /* TMSDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -143,6 +148,9 @@
 				Base,
 			);
 			mainGroup = 2B4A0D7329A5DB94000E2448;
+			packageReferences = (
+				2B0612EA29B1C93D002C5AC4 /* XCRemoteSwiftPackageReference "GCDWebServer" */,
+			);
 			productRefGroup = 2B4A0D7D29A5DB94000E2448 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -171,15 +179,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4A0D8429A5DB94000E2448 /* ViewController.swift in Sources */,
-				2BF7645229ABBEB30091DC9C /* ViewController+Server.swift in Sources */,
 				2BF7644029A775DC0091DC9C /* Connection.swift in Sources */,
 				2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */,
 				2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */,
 				2B4A0D8029A5DB94000E2448 /* AppDelegate.swift in Sources */,
-				2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */,
+				2B1AFBC429B1CF190012CD7E /* WebviewController.swift in Sources */,
+				2B4CE30C29B1D21300F48887 /* BonjourResolver.swift in Sources */,
 				2B4A0D8229A5DB94000E2448 /* SceneDelegate.swift in Sources */,
-				2BF7645029ABBE7F0091DC9C /* ViewController+Client.swift in Sources */,
-				2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */,
+				2BF7643E29A773450091DC9C /* Client.swift in Sources */,
+				2B0612EE29B1C992002C5AC4 /* Server.swift in Sources */,
 				2BF7644C29ABB9390091DC9C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B0612EA29B1C93D002C5AC4 /* XCRemoteSwiftPackageReference "GCDWebServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yene/GCDWebServer";
+			requirement = {
+				kind = exactVersion;
+				version = 3.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B0612EB29B1C93D002C5AC4 /* GCDWebServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B0612EA29B1C93D002C5AC4 /* XCRemoteSwiftPackageReference "GCDWebServer" */;
+			productName = GCDWebServer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B4A0D7429A5DB94000E2448 /* Project object */;
 }

@@ -1,28 +1,17 @@
 import UIKit
 import Network
+import GCDWebServer
 
-let message = """
+let MESSAGE = """
     {"barcodeId": "\(UUID().uuidString)"}
     """
 
 class ViewController: UIViewController {
     
-    lazy var serverListener = try? ServerListener(delegate: self)
-    lazy var clientListener = ClientListener(delegate: self)
-    
-    var serverListConnection: [Connection] = []
-    var clientConnection: Connection?
-    
-    private var serverEnabled: Bool = false {
-        didSet {
-            self.updateServerBtn()
-        }
-    }
-    private var clientEnabled: Bool = false {
-        didSet {
-            self.updateClientBtn()
-        }
-    }
+    lazy var webServer = Server(delegate: self)
+    lazy var clientListener = Client(delegate: self)
+    var hostServer: URL?
+    var logs: [Any?] = []
     
     @IBOutlet weak var clientBtn: UIButton!
     @IBOutlet weak var serverBtn: UIButton!
@@ -36,33 +25,47 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapServer(_ sender: Any) {
-        serverEnabled = !serverEnabled
-        if serverEnabled {
-            serverListener = try? ServerListener(delegate: self)
-            serverListener?.start()
+        if webServer.isStarted {
+            webServer.stop()
         } else {
-            serverListener?.stop()
+            webServer.start()
         }
+        updateServerBtn()
     }
     
     @IBAction func didTapClient(_ sender: Any) {
-        clientEnabled = !clientEnabled
-        if clientEnabled {
-            clientListener = ClientListener(delegate: self)
-            clientListener.start()
-        } else {
+        if clientListener.isStarted {
             clientListener.stop()
+        } else {
+            clientListener = Client(delegate: self)
+            clientListener.start()
         }
     }
     
     @IBAction func didTapMessageToServer(_ sender: Any) {
-        clientConnection?.send(string: message)
+        guard var url = hostServer else { return }
+        url = url.appendingPathComponent("/json?message=client-is-here")
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data, url, error in
+            if let data = data {
+                let string = String(data: data, encoding: .utf8)
+                print("response: \(string)")
+            } else if let e = error {
+                print(e.localizedDescription)
+            }
+        }
+        task.resume()
     }
     
     @IBAction func didTapMessageToClient(_ sender: Any) {
-        serverListConnection.forEach {
-            $0.send(string: message)
-        }
+        
+    }
+    
+    @IBAction func didTapOpenWebview(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview") as! WebviewController
+        
+        vc.set(url: hostServer)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func updateServerBtn() {
@@ -76,19 +79,18 @@ class ViewController: UIViewController {
     }
     
     func getServerTitleBtn() -> String {
-        let count: Int = serverListConnection.count
-        if serverEnabled {
-            return "Server is ON [\(count)]"
+        if webServer.isStarted {
+            return "Server is ON \(webServer.host):\(webServer.port)"
         } else {
             return "Server is OFF"
         }
     }
     
     func getClientTitleBtn() -> String {
-        if clientEnabled, let _ = clientConnection {
-            return "Connected!"
+        if let server = hostServer {
+            return "\(server.host ?? ""):\(server.port ?? 0)"
         } else {
-            return "Connect to Server..."
+            return "Connect Server IP"
         }
     }
     
@@ -105,7 +107,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return serverListConnection.count
+        return logs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,28 +115,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let endpoint = serverListConnection[indexPath.row].endpoint
-        var service: String?
-        if case let NWEndpoint.service(name, _, _, _) = endpoint {
-            service = name
-        }
-        
-        cell.textLabel?.text = "\(String(describing: service))"
-        cell.detailTextLabel?.text = "\(String(describing: endpoint))"
-        
+        cell.textLabel?.text = String(describing: logs[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let connection = serverListConnection[indexPath.row]
-        connection.delegate = self
-        connection.send(string: message)
+        
     }
 }
 
-extension ViewController: ConnectionDelegate {
+extension ViewController: ClientDelegate {
     
-    func onIncoming(string: String) {
-        showAlert(message: message)
+    func onResolveHostServer(url: URL?) {
+        hostServer = url
+        updateClientBtn()
+    }
+}
+
+extension ViewController: ServerDelegate {
+    func onIncomingRequest(data: Any?) {
+        logs.append(data)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
