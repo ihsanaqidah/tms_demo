@@ -19,7 +19,7 @@ class ClientListener: NSObject {
     private var browser: NetServiceBrowser?
     private var services: [NetService] = []
     private(set) var serverUrl: URL?
-    private(set) var isStarted: Bool = false
+    private(set) var isRunning: Bool = false
     
     init(delegate: ClientDelegate) {
         self.delegate = delegate
@@ -29,12 +29,12 @@ class ClientListener: NSObject {
         browser = NetServiceBrowser()
         browser?.delegate = self
         browser?.searchForServices(ofType: "_tms._tcp", inDomain: "local")
-        isStarted = true
+        isRunning = true
     }
     
     func stop() {
         browser?.stop()
-        isStarted = false
+        isRunning = false
     }
     
     func nameForAddress(_ address: Data) -> String {

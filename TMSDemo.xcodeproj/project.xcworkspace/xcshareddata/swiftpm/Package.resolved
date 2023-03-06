@@ -19,9 +19,18 @@
       }
     },
     {
-      "identity" : "telegraph#installation",
+      "identity" : "swifter",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Building42/Telegraph#installation",
+      "location" : "https://github.com/httpswift/swifter.git",
+      "state" : {
+        "revision" : "9483a5d459b45c3ffd059f7b55f9638e268632fd",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "telegraph",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Building42/Telegraph.git",
       "state" : {
         "revision" : "94b4a4b2d4466cba9fc08c93f6ff365b8124a81c",
         "version" : "0.30.0"

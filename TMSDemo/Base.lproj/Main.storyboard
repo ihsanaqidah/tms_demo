@@ -47,7 +47,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrJ-on-KU4">
                                         <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="50"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Connect to Server..."/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Connect to Server"/>
                                         <connections>
                                             <action selector="didTapClient:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sig-OB-RQe"/>
                                         </connections>
@@ -107,24 +107,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3X-B4-Iqm">
                                 <rect key="frame" x="0.0" y="768" width="393" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-LB-kY3">
-                                        <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Message to Client"/>
-                                        <connections>
-                                            <action selector="didTapMessageToClient:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5T-Xw-9iI"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4R-iT-S6F">
-                                        <rect key="frame" x="131" y="0.0" width="131" height="50"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Message to Server"/>
-                                        <connections>
-                                            <action selector="didTapMessageToServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IaA-7d-wmZ"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zg-SJ-ax0">
-                                        <rect key="frame" x="262" y="0.0" width="131" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Webview"/>
                                         <connections>

@@ -10,19 +10,8 @@ class ViewController: UIViewController {
     lazy var serverListener = ServerListener(delegate: self)
     lazy var clientListener = ClientListener(delegate: self)
     
-    var serverListConnection: [Connection] = []
-    var clientConnection: Connection?
-    
-    private var serverEnabled: Bool = false {
-        didSet {
-            self.updateServerBtn()
-        }
-    }
-    private var clientEnabled: Bool = false {
-        didSet {
-            self.updateClientBtn()
-        }
-    }
+    var serverUrl: URL?
+    var clientLogs: [Any?] = []
     
     @IBOutlet weak var clientBtn: UIButton!
     @IBOutlet weak var serverBtn: UIButton!
@@ -36,36 +25,30 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapServer(_ sender: Any) {
-        serverEnabled = !serverEnabled
-        if serverEnabled {
-            try? serverListener.start()
-        } else {
+        if serverListener.isRunning {
             serverListener.stop()
+        } else {
+            try? serverListener.start()
         }
+        updateServerBtn()
     }
     
     @IBAction func didTapClient(_ sender: Any) {
-        clientEnabled = !clientEnabled
-        if clientEnabled {
+        if clientListener.isRunning {
+            clientListener.stop()
+        } else {
             clientListener = ClientListener(delegate: self)
             clientListener.start()
-        } else {
-            clientListener.stop()
-        }
-    }
-    
-    @IBAction func didTapMessageToServer(_ sender: Any) {
-        clientConnection?.send(string: MESSAGE)
-    }
-    
-    @IBAction func didTapMessageToClient(_ sender: Any) {
-        serverListConnection.forEach {
-            $0.send(string: MESSAGE)
         }
     }
     
     @IBAction func didTapWebview(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview")
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview") as! WebviewController
+        
+        if let url = serverUrl, var comp = URLComponents(url: url, resolvingAgainstBaseURL: true) {
+            comp.path = "/status"
+            vc.setDefault(url: comp.url!)
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -80,19 +63,18 @@ class ViewController: UIViewController {
     }
     
     func getServerTitleBtn() -> String {
-        let count: Int = serverListConnection.count
-        if serverEnabled {
-            return "Server is ON [\(count)]"
+        if serverListener.isRunning {
+            return "Server is ON \(serverListener.host):\(serverListener.port)"
         } else {
             return "Server is OFF"
         }
     }
     
     func getClientTitleBtn() -> String {
-        if clientEnabled, let _ = clientConnection {
-            return "Connected!"
+        if let server = serverUrl {
+            return "\(server.host ?? ""):\(server.port ?? 0)"
         } else {
-            return "Connect to Server..."
+            return "Connect to Server"
         }
     }
     
@@ -109,7 +91,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return serverListConnection.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,22 +99,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let endpoint = serverListConnection[indexPath.row].endpoint
-        var service: String?
-        if case let NWEndpoint.service(name, _, _, _) = endpoint {
-            service = name
-        }
-        
-        cell.textLabel?.text = "\(String(describing: service))"
-        cell.detailTextLabel?.text = "\(String(describing: endpoint))"
+        cell.textLabel?.text = ""
+        cell.detailTextLabel?.text = ""
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let connection = serverListConnection[indexPath.row]
-        connection.delegate = self
-        connection.send(string: MESSAGE)
     }
 }
 
@@ -140,5 +110,21 @@ extension ViewController: ConnectionDelegate {
     
     func onIncoming(string: String) {
         showAlert(message: string)
+    }
+}
+
+extension ViewController: ClientDelegate {
+    func onResolveHostServer(url: URL?) {
+        print(String(describing: url?.absoluteString))
+        serverUrl = url
+        updateClientBtn()
+    }
+}
+
+extension ViewController: ServerListenerDelegate {
+    
+    func onIncoming(connections: [Connection]) {
+        tableView.reloadData()
+        updateServerBtn()
     }
 }

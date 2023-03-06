@@ -6,17 +6,28 @@
 //
 
 import Foundation
-import Network
 import Telegraph
 
 class ServerListener {
     
     private(set) var delegate: ServerListenerDelegate?
-    private let webNetService: WebNetService
+    private let webNetService: TelegraphNetService
+    
+    var isRunning: Bool {
+        webNetService.isRunning
+    }
+    
+    var host: String {
+        webNetService.host ?? ""
+    }
+    
+    var port: Int32 {
+        webNetService.port
+    }
     
     init(delegate: ServerListenerDelegate?) {
         self.delegate = delegate
-        self.webNetService = WebNetService(name: "TMS Demo", port: 8080, serviceType: "_tms._tcp")
+        self.webNetService = TelegraphNetService(name: "TMS Demo", port: 8080, serviceType: "_tms._tcp")
     }
     
     func start() throws {
@@ -25,11 +36,5 @@ class ServerListener {
     
     func stop() {
         webNetService.stop()
-    }
-}
-
-extension ServerListener: ServerDelegate {
-    func serverDidStop(_ server: Telegraph.Server, error: Error?) {
-        print(server)
     }
 }

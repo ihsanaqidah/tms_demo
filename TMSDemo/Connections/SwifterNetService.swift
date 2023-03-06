@@ -1,21 +1,25 @@
 //
-//  WebNetService.swift
+//  SwifterNetService.swift
 //  TMSDemo
 //
 //  Created by Ihsan Husnul Aqidah on 3/4/23.
 //
 
 import Foundation
-import Telegraph
+import Swifter
 
-class WebNetService: NSObject {
+class SwifterNetService: NSObject {
     private var netService: NetService?
-    private var httpServer = Server()
+    private var httpServer = HttpServer()
     
     let name: String
     let port: Int32
     let domain: String = "local"
     let serviceType: String
+    
+    var isRunning: Bool {
+        httpServer.operating
+    }
     
     deinit {
         netService?.stop()
@@ -28,13 +32,12 @@ class WebNetService: NSObject {
         self.serviceType = serviceType
         super.init()
         
-        self.httpServer.delegate = self
-        self.httpServer.route(.GET, "status") { (.ok, "Server is running") }
+        httpServer["/status"] = { .ok(.htmlBody("You asked for \($0)"))  }
     }
     
     func start() {
         do {
-            try httpServer.start(port: Endpoint.Port(port))
+            try httpServer.start(8080, forceIPv4: true, priority: .userInitiated)
             self.netService = NetService(domain: self.domain, type: self.serviceType, name: name, port: port)
             self.netService!.publish()
         } catch let error {
@@ -46,12 +49,5 @@ class WebNetService: NSObject {
         httpServer.stop()
         netService?.stop()
         netService = nil
-    }
-}
-
-extension WebNetService: ServerDelegate {
-    func serverDidStop(_ server: Telegraph.Server, error: Error?) {
-        print("serverDidStop server: \(server)")
-        print("serverDidStop error \(String(describing: error))")
     }
 }
