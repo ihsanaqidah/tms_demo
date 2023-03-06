@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import Telegraph
 
 class WebNetService: NSObject {
-    private let workQueue = DispatchQueue.main
     private var netService: NetService?
+    private var httpServer = Server()
     
     let name: String
-    let port: Int
-    let domain: String
+    let port: Int32
+    let domain: String = "local"
     let serviceType: String
     
     deinit {
@@ -21,36 +22,36 @@ class WebNetService: NSObject {
     }
     
     /// Initializes a new WebNetService instance.
-    init(name: String, port: Int = WebNetService.defaultPort, serviceType: String, domain: String) {
+    init(name: String, port: Int32, serviceType: String) {
         self.name = name
         self.port = port
         self.serviceType = serviceType
-        self.domain = domain
-    }
-    
-    /// Starts publishing the service.
-    func publish() {
-        let serviceName = name
-        let servicePort = Int32(port)
+        super.init()
         
-        workQueue.async {
-            self.netService?.stop()
-            self.netService = NetService(domain: self.domain, type: self.serviceType, name: serviceName, port: servicePort)
+        self.httpServer.delegate = self
+        self.httpServer.route(.GET, "status") { (.ok, "Server is running") }
+    }
+    
+    func start() {
+        do {
+            try httpServer.start(port: Endpoint.Port(port))
+            self.netService = NetService(domain: self.domain, type: self.serviceType, name: name, port: port)
             self.netService!.publish()
+        } catch let error {
+            print("WebNetService start: \(error)")
         }
     }
     
-    /// Stops publishing the service.
-    func unpublish() {
-        workQueue.async {
-            self.netService?.stop()
-            self.netService = nil
-        }
+    func stop() {
+        httpServer.stop()
+        netService?.stop()
+        netService = nil
     }
 }
 
-extension WebNetService {
-    static let defaultDomain = "local."
-    static let defaultServiceType = "_http._tcp"
-    static let defaultPort = 8080
+extension WebNetService: ServerDelegate {
+    func serverDidStop(_ server: Telegraph.Server, error: Error?) {
+        print("serverDidStop server: \(server)")
+        print("serverDidStop error \(String(describing: error))")
+    }
 }

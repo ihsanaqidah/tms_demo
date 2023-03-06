@@ -28,7 +28,7 @@ class ClientListener: NSObject {
     func start() {
         browser = NetServiceBrowser()
         browser?.delegate = self
-        browser?.searchForServices(ofType: "_tms._tcp", inDomain: "local.")
+        browser?.searchForServices(ofType: "_tms._tcp", inDomain: "local")
         isStarted = true
     }
     
