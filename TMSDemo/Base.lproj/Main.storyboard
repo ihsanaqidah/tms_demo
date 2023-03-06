@@ -108,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="768" width="393" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-LB-kY3">
-                                        <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Message to Client"/>
                                         <connections>
@@ -116,11 +116,19 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4R-iT-S6F">
-                                        <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="50"/>
+                                        <rect key="frame" x="131" y="0.0" width="131" height="50"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Message to Server"/>
                                         <connections>
                                             <action selector="didTapMessageToServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IaA-7d-wmZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zg-SJ-ax0">
+                                        <rect key="frame" x="262" y="0.0" width="131" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Webview"/>
+                                        <connections>
+                                            <action selector="didTapWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9wM-d1-cC4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -154,6 +162,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
+        </scene>
+        <!--Webview Controller-->
+        <scene sceneID="htA-jY-1kV">
+            <objects>
+                <viewController storyboardIdentifier="webview" id="D96-9l-9Rj" customClass="WebviewController" customModule="TMSDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wrh-yY-8pN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i3A-Pk-XZh">
+                                <rect key="frame" x="0.0" y="59" width="312" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qm6-gb-KqU">
+                                <rect key="frame" x="318" y="58.666666666666657" width="75" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="fs9-cu-LSo"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="didTapButton:" destination="D96-9l-9Rj" eventType="touchUpInside" id="WCL-57-qpX"/>
+                                </connections>
+                            </button>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3t-F0-Gbf">
+                                <rect key="frame" x="0.0" y="93" width="393" height="725"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w8F-OY-sc1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="T3t-F0-Gbf" firstAttribute="leading" secondItem="w8F-OY-sc1" secondAttribute="leading" id="4Pt-xl-IAS"/>
+                            <constraint firstItem="qm6-gb-KqU" firstAttribute="centerY" secondItem="i3A-Pk-XZh" secondAttribute="centerY" id="IIe-Pn-8oH"/>
+                            <constraint firstItem="w8F-OY-sc1" firstAttribute="trailing" secondItem="T3t-F0-Gbf" secondAttribute="trailing" id="LOy-xe-YC7"/>
+                            <constraint firstItem="w8F-OY-sc1" firstAttribute="bottom" secondItem="T3t-F0-Gbf" secondAttribute="bottom" id="SaF-J6-PV3"/>
+                            <constraint firstItem="qm6-gb-KqU" firstAttribute="leading" secondItem="i3A-Pk-XZh" secondAttribute="trailing" constant="6" id="SzS-54-ZBB"/>
+                            <constraint firstItem="i3A-Pk-XZh" firstAttribute="top" secondItem="w8F-OY-sc1" secondAttribute="top" id="XNG-Zi-Vca"/>
+                            <constraint firstItem="T3t-F0-Gbf" firstAttribute="top" secondItem="i3A-Pk-XZh" secondAttribute="bottom" id="k5W-5H-wNG"/>
+                            <constraint firstItem="i3A-Pk-XZh" firstAttribute="leading" secondItem="w8F-OY-sc1" secondAttribute="leading" id="kCx-QA-1s8"/>
+                            <constraint firstItem="w8F-OY-sc1" firstAttribute="trailing" secondItem="qm6-gb-KqU" secondAttribute="trailing" id="lHJ-kS-YaU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="i3A-Pk-XZh" id="orF-85-IKv"/>
+                        <outlet property="webview" destination="T3t-F0-Gbf" id="cmV-ni-Vwf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47a-oC-ran" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="5"/>
         </scene>
     </scenes>
     <resources>

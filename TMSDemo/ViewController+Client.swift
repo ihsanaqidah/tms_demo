@@ -8,10 +8,8 @@
 import Foundation
 import Network
 
-extension ViewController: ClientListenerDelegate {
-    
-    func onIncoming(connection: Connection?) {
-        clientConnection = connection
-        updateClientBtn()
+extension ViewController: ClientDelegate {
+    func onResolveHostServer(url: URL?) {
+        print(url?.absoluteString)
     }
 }

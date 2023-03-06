@@ -1,13 +1,13 @@
 import UIKit
 import Network
 
-let message = """
+let MESSAGE = """
     {"barcodeId": "\(UUID().uuidString)"}
     """
 
 class ViewController: UIViewController {
     
-    lazy var serverListener = try? ServerListener(delegate: self)
+    lazy var serverListener = ServerListener(delegate: self)
     lazy var clientListener = ClientListener(delegate: self)
     
     var serverListConnection: [Connection] = []
@@ -38,10 +38,9 @@ class ViewController: UIViewController {
     @IBAction func didTapServer(_ sender: Any) {
         serverEnabled = !serverEnabled
         if serverEnabled {
-            serverListener = try? ServerListener(delegate: self)
-            serverListener?.start()
+            try? serverListener.start()
         } else {
-            serverListener?.stop()
+            serverListener.stop()
         }
     }
     
@@ -56,13 +55,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapMessageToServer(_ sender: Any) {
-        clientConnection?.send(string: message)
+        clientConnection?.send(string: MESSAGE)
     }
     
     @IBAction func didTapMessageToClient(_ sender: Any) {
         serverListConnection.forEach {
-            $0.send(string: message)
+            $0.send(string: MESSAGE)
         }
+    }
+    
+    @IBAction func didTapWebview(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func updateServerBtn() {
@@ -128,13 +132,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let connection = serverListConnection[indexPath.row]
         connection.delegate = self
-        connection.send(string: message)
+        connection.send(string: MESSAGE)
     }
 }
 
 extension ViewController: ConnectionDelegate {
     
     func onIncoming(string: String) {
-        showAlert(message: message)
+        showAlert(message: string)
     }
 }
