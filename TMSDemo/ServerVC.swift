@@ -13,20 +13,38 @@ class ServerVC: UIViewController {
     
     lazy var serverListener = ServerListener()
     private var requests: [DateRequest] = []
+    private var connectedPeers: [(endpoint: Endpoint, name: String?)] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.connectedPeersBtn.setTitle("Connected Peers \(self.connectedPeers.count)", for: .normal)
+            }
+        }
+    }
     
     @IBOutlet weak var connectBtn: UIButton!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var connectedPeersBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableview.delegate = self
         tableview.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIScene.willDeactivateNotification, object: nil)
     }
     
-    @IBAction func didTapConnect(_ sender: Any) {
+    @objc func willResignActive() {
+        if serverListener.isRunning {
+            didTapConnect(nil)
+        }
+    }
+    
+    @IBAction func didTapConnect(_ sender: Any?) {
         if serverListener.isRunning {
             serverListener.stop()
+            
+            connectedPeers = []
         } else {
             try? serverListener.start(delegate: self)
         }
@@ -97,11 +115,38 @@ extension ServerVC: ServerWebSocketDelegate {
     
     func server(_ server: Server, webSocketDidDisconnect webSocket: WebSocket, error: Error?) {
         print("webSocketDidDisconnect")
+        
+        DispatchQueue.main.async {
+            let resultIndex = self.connectedPeers.firstIndex(where: { $0.endpoint == webSocket.remoteEndpoint })
+            if let disconnectedIndex = resultIndex {
+                let disconnectedPeer = self.connectedPeers[disconnectedIndex]
+                self.connectedPeers.remove(at: disconnectedIndex)
+                self.showAlert(host: self, title: "Disconnected!", message: "name: \(disconnectedPeer.name ?? ""), IP: \(disconnectedPeer.endpoint.host)")
+            }
+        }
     }
     
     func server(_ server: Server, webSocket: WebSocket, didReceiveMessage message: WebSocketMessage) {
-        if case let .text(text) = message.payload {
-            print("didReceiveMessage \(text)")
+        switch message.payload {
+        case .text(let string):
+            print("didReceiveMessage \(string)")
+            
+        case .binary(let data):
+            do {
+                if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let name = dict["name"] as? String {
+                    DispatchQueue.main.async {
+                        if let endpoint = webSocket.remoteEndpoint {
+                            self.connectedPeers.append((endpoint: endpoint, name: name))
+                            self.showAlert(host: self, title: "Incoming Connection!", message: "name: \(name), IP: \(endpoint.host)")
+                        }
+                    }
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        case .none, .close(_, _):
+            break
         }
     }
 }

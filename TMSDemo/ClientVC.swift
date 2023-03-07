@@ -24,6 +24,14 @@ class ClientVC: UIViewController {
         
         tableview.delegate = self
         tableview.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIScene.willDeactivateNotification, object: nil)
+    }
+    
+    @objc func willResignActive() {
+        if clientListener.isRunning {
+            didTapConnect(nil)
+        }
     }
     
     func setupRequests() {
@@ -89,10 +97,13 @@ class ClientVC: UIViewController {
         }
     }
     
-    @IBAction func didTapConnect(_ sender: Any) {
+    @IBAction func didTapConnect(_ sender: Any?) {
         if clientListener.isRunning {
             clientListener.stop()
             webSocketClient?.disconnect()
+            
+            requests = []
+            tableview.reloadData()
         } else {
             clientListener = ClientListener(delegate: self)
             clientListener.start()
@@ -184,6 +195,11 @@ extension ClientVC: WebSocketClientDelegate {
     func webSocketClient(_ client: WebSocketClient, didDisconnectWithError error: Error?) {
         // We were disconnected from the server
         print("WebSocketClientDelegate didDisconnectWithError")
+        
+        DispatchQueue.main.async {
+            self.didTapConnect(nil)
+            self.showAlert(host: self, title: "Server Disconnected!", message: error?.localizedDescription ?? "")
+        }
     }
     
     func webSocketClient(_ client: WebSocketClient, didReceiveData data: Data) {
@@ -192,8 +208,8 @@ extension ClientVC: WebSocketClientDelegate {
     }
     
     func webSocketClient(_ client: WebSocketClient, didReceiveText text: String) {
-        // We received a text message, let's send one back
-        client.send(text: "WebSocketClientDelegate Message received: \(text)")
-        print("didReceiveTextClient \(text)")
+        if text == "Welcome!", let dataJson = "{\"name\": \"\(UIDevice.current.name)\"}".data(using: .utf8) {
+            client.send(data: dataJson)
+        }
     }
 }

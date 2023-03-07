@@ -5,7 +5,7 @@
 //  Created by Ihsan Husnul Aqidah on 2/24/23.
 //
 
-import Foundation
+import UIKit
 import Network
 import Telegraph
 
@@ -32,5 +32,17 @@ extension HTTPRequest {
         let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
         let jsonString: String = String(data: jsonData, encoding: .ascii) ?? ""
         return jsonString
+    }
+}
+
+extension UIViewController {
+    func showAlert(host: UIViewController, title: String, message: String) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        controller.addAction(
+            UIAlertAction(title: "OK", style: .default, handler: { [weak controller] _ in
+                controller?.dismiss(animated: true)
+            })
+        )
+        host.present(controller, animated: true)
     }
 }

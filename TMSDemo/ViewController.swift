@@ -17,18 +17,8 @@ class ViewController: UIViewController {
 //        }
 //        navigationController?.pushViewController(vc, animated: true)
 //    }
-    
-//    func showAlert(message: String) {
-//        let controller = UIAlertController(title: "Incoming message...", message: message, preferredStyle: .alert)
-//        controller.addAction(
-//            UIAlertAction(title: "OK", style: .default, handler: { [weak controller] _ in
-//                controller?.dismiss(animated: true)
-//            })
-//        )
-//        present(controller, animated: true)
-//    }
 }
-//
+
 //extension ViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 0

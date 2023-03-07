@@ -110,7 +110,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="N9z-MO-FOJ">
-                                <rect key="frame" x="0.0" y="147" width="393" height="671"/>
+                                <rect key="frame" x="0.0" y="147" width="393" height="627"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="reusableCell" textLabel="BNk-Ks-kz3" rowHeight="44" style="IBUITableViewCellStyleDefault" id="Nko-4K-7ce">
@@ -132,6 +132,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECg-By-W5d">
+                                <rect key="frame" x="0.0" y="774" width="393" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ID8-bh-vGF"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Connected Peers 0"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bho-7P-qmA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -139,22 +147,26 @@
                             <constraint firstItem="N9z-MO-FOJ" firstAttribute="top" secondItem="FGI-ug-JL0" secondAttribute="bottom" id="BpW-Ew-qNZ"/>
                             <constraint firstItem="N9z-MO-FOJ" firstAttribute="leading" secondItem="bho-7P-qmA" secondAttribute="leading" id="GDZ-z9-Ehs"/>
                             <constraint firstItem="FGI-ug-JL0" firstAttribute="top" secondItem="bho-7P-qmA" secondAttribute="top" id="QWT-bQ-H4Q"/>
+                            <constraint firstItem="bho-7P-qmA" firstAttribute="trailing" secondItem="ECg-By-W5d" secondAttribute="trailing" id="hYf-U3-CJW"/>
+                            <constraint firstItem="ECg-By-W5d" firstAttribute="leading" secondItem="bho-7P-qmA" secondAttribute="leading" id="iKq-eX-j5r"/>
+                            <constraint firstItem="bho-7P-qmA" firstAttribute="bottom" secondItem="ECg-By-W5d" secondAttribute="bottom" id="lWB-CF-4hR"/>
                             <constraint firstItem="FGI-ug-JL0" firstAttribute="leading" secondItem="bho-7P-qmA" secondAttribute="leading" id="mxh-hd-uVb"/>
                             <constraint firstItem="bho-7P-qmA" firstAttribute="trailing" secondItem="FGI-ug-JL0" secondAttribute="trailing" id="oIT-Fu-YFF"/>
-                            <constraint firstItem="bho-7P-qmA" firstAttribute="bottom" secondItem="N9z-MO-FOJ" secondAttribute="bottom" id="vex-tC-dj0"/>
+                            <constraint firstItem="ECg-By-W5d" firstAttribute="top" secondItem="N9z-MO-FOJ" secondAttribute="bottom" id="rYz-mU-8N7"/>
                             <constraint firstItem="bho-7P-qmA" firstAttribute="trailing" secondItem="N9z-MO-FOJ" secondAttribute="trailing" id="y3y-r9-UkK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FYk-1E-g77"/>
                     <connections>
                         <outlet property="connectBtn" destination="FGI-ug-JL0" id="fyR-OC-c6s"/>
+                        <outlet property="connectedPeersBtn" destination="ECg-By-W5d" id="DkU-7I-cfu"/>
                         <outlet property="tableview" destination="N9z-MO-FOJ" id="YyE-pm-MO3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Uu-Eq-h5X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="49I-nM-YLK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-466" y="750"/>
+            <point key="canvasLocation" x="-466.41221374045801" y="750"/>
         </scene>
         <!--Webview Controller-->
         <scene sceneID="htA-jY-1kV">
