@@ -117,5 +117,6 @@ class TelegraphNetService: NSObject {
 extension TelegraphNetService: ServerDelegate {
     func serverDidStop(_ server: Telegraph.Server, error: Error?) {
         print("serverDidStop error \(String(describing: error))")
+        listenerDelegate?.serverDidStop()
     }
 }

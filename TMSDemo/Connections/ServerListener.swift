@@ -10,6 +10,7 @@ import Telegraph
 
 protocol ServerListenerDelegate: ServerWebSocketDelegate {
     func onIncoming(request: HTTPRequest)
+    func serverDidStop()
 }
 
 class ServerListener {

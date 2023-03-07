@@ -43,8 +43,6 @@ class ServerVC: UIViewController {
     @IBAction func didTapConnect(_ sender: Any?) {
         if serverListener.isRunning {
             serverListener.stop()
-            
-            connectedPeers = []
         } else {
             try? serverListener.start(delegate: self)
         }
@@ -61,19 +59,6 @@ class ServerVC: UIViewController {
             return "Stop HTTP Server"
         } else {
             return "Start HTTP Server"
-        }
-    }
-}
-
-extension ServerVC: ServerListenerDelegate {
-    
-    func onIncoming(request: HTTPRequest) {
-        DispatchQueue.main.async {
-            let newRequest = DateRequest(timestamp: Date(), request: request)
-            self.requests.insert(newRequest, at: 0)
-            self.tableview.performBatchUpdates {
-                self.tableview.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-            }
         }
     }
 }
@@ -107,6 +92,22 @@ extension ServerVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ServerVC: ServerListenerDelegate {
+    func serverDidStop() {
+        connectedPeers = []
+    }
+    
+    func onIncoming(request: HTTPRequest) {
+        DispatchQueue.main.async {
+            let newRequest = DateRequest(timestamp: Date(), request: request)
+            self.requests.insert(newRequest, at: 0)
+            self.tableview.performBatchUpdates {
+                self.tableview.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            }
+        }
+    }
+}
+
 extension ServerVC: ServerWebSocketDelegate {
     func server(_ server: Server, webSocketDidConnect webSocket: WebSocket, handshake: HTTPRequest) {
         print("webSocketDidConnect")
@@ -117,11 +118,9 @@ extension ServerVC: ServerWebSocketDelegate {
         print("webSocketDidDisconnect")
         
         DispatchQueue.main.async {
-            let resultIndex = self.connectedPeers.firstIndex(where: { $0.endpoint == webSocket.remoteEndpoint })
-            if let disconnectedIndex = resultIndex {
-                let disconnectedPeer = self.connectedPeers[disconnectedIndex]
-                self.connectedPeers.remove(at: disconnectedIndex)
-                self.showAlert(host: self, title: "Disconnected!", message: "name: \(disconnectedPeer.name ?? ""), IP: \(disconnectedPeer.endpoint.host)")
+            if !self.connectedPeers.isEmpty {
+                self.connectedPeers.remove(at: 0)
+                self.showAlert(host: self, title: "Peer Disconnected!", message: "[inprogress] to known peer IP/name.")
             }
         }
     }

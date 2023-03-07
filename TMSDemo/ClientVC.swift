@@ -101,9 +101,6 @@ class ClientVC: UIViewController {
         if clientListener.isRunning {
             clientListener.stop()
             webSocketClient?.disconnect()
-            
-            requests = []
-            tableview.reloadData()
         } else {
             clientListener = ClientListener(delegate: self)
             clientListener.start()
@@ -116,7 +113,7 @@ class ClientVC: UIViewController {
     }
     
     func getClientTitleBtn() -> String {
-        if let _ = serverUrl {
+        if clientListener.isRunning, let _ = serverUrl {
             return "Disconnect to HTTP Server"
         } else {
             return "Connect to HTTP Server"
@@ -197,7 +194,10 @@ extension ClientVC: WebSocketClientDelegate {
         print("WebSocketClientDelegate didDisconnectWithError")
         
         DispatchQueue.main.async {
-            self.didTapConnect(nil)
+            self.requests = []
+            self.tableview.reloadData()
+            
+            self.updateClientBtn()
             self.showAlert(host: self, title: "Server Disconnected!", message: error?.localizedDescription ?? "")
         }
     }
