@@ -289,22 +289,40 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="801-rv-YS7">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="rzB-mO-ygu">
+                                        <rect key="frame" x="178" y="339" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rzB-mO-ygu" firstAttribute="centerY" secondItem="801-rv-YS7" secondAttribute="centerY" id="Wgq-qX-P5W"/>
+                                    <constraint firstItem="rzB-mO-ygu" firstAttribute="centerX" secondItem="801-rv-YS7" secondAttribute="centerX" id="YC3-z0-AX1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wcp-69-MZV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wcp-69-MZV" firstAttribute="bottom" secondItem="ooP-rA-1By" secondAttribute="bottom" id="3zN-az-gBg"/>
+                            <constraint firstItem="801-rv-YS7" firstAttribute="top" secondItem="wcp-69-MZV" secondAttribute="top" id="APG-oH-9ZW"/>
+                            <constraint firstItem="wcp-69-MZV" firstAttribute="bottom" secondItem="801-rv-YS7" secondAttribute="bottom" id="Tku-O2-4FP"/>
                             <constraint firstItem="wcp-69-MZV" firstAttribute="trailing" secondItem="bq9-qD-eXf" secondAttribute="trailing" id="UTv-f2-H5o"/>
                             <constraint firstItem="ooP-rA-1By" firstAttribute="top" secondItem="bq9-qD-eXf" secondAttribute="bottom" id="Y7R-GR-uE6"/>
                             <constraint firstItem="ooP-rA-1By" firstAttribute="leading" secondItem="wcp-69-MZV" secondAttribute="leading" id="bFS-xI-Ngn"/>
+                            <constraint firstItem="wcp-69-MZV" firstAttribute="trailing" secondItem="801-rv-YS7" secondAttribute="trailing" id="eX6-qa-BKz"/>
                             <constraint firstItem="wcp-69-MZV" firstAttribute="trailing" secondItem="ooP-rA-1By" secondAttribute="trailing" id="gcI-Gq-Rmd"/>
                             <constraint firstItem="bq9-qD-eXf" firstAttribute="leading" secondItem="wcp-69-MZV" secondAttribute="leading" id="lf4-2U-QGu"/>
+                            <constraint firstItem="801-rv-YS7" firstAttribute="leading" secondItem="wcp-69-MZV" secondAttribute="leading" id="mpz-kE-BjK"/>
                             <constraint firstItem="bq9-qD-eXf" firstAttribute="top" secondItem="wcp-69-MZV" secondAttribute="top" id="xNs-kU-krI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="du7-le-STK"/>
                     <connections>
                         <outlet property="connectBtn" destination="bq9-qD-eXf" id="ZGo-AE-45A"/>
+                        <outlet property="loadingView" destination="801-rv-YS7" id="r50-QN-CRI"/>
                         <outlet property="tableview" destination="ooP-rA-1By" id="yg1-9i-IJJ"/>
                     </connections>
                 </viewController>
