@@ -31,7 +31,6 @@ class TelegraphNetService: NSObject {
     
     /// Initializes a new WebNetService instance.
     init(name: String, port: Int32, serviceType: String) {
-        nw_listener_set_advertise_descriptor(NWListener(), NWAdver)
         self.name = name
         self.port = port
         self.serviceType = serviceType
