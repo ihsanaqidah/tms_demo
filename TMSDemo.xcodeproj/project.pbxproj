@@ -18,6 +18,9 @@
 		2B97912329B5E69B00C839E2 /* SwifterNetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97912229B5E69B00C839E2 /* SwifterNetService.swift */; };
 		2B97912629B5E72C00C839E2 /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 2B97912529B5E72C00C839E2 /* Telegraph */; };
 		2B97912929B5E77E00C839E2 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 2B97912829B5E77E00C839E2 /* Swifter */; };
+		2B97912D29B70D3000C839E2 /* ServerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97912C29B70D3000C839E2 /* ServerVC.swift */; };
+		2B97912F29B70D3A00C839E2 /* ClientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97912E29B70D3A00C839E2 /* ClientVC.swift */; };
+		2B97913129B72D4200C839E2 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B97913029B72D4200C839E2 /* TextViewController.swift */; };
 		2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643B29A773120091DC9C /* ServerListener.swift */; };
 		2BF7643E29A773450091DC9C /* ClientListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643D29A773450091DC9C /* ClientListener.swift */; };
 		2BF7644029A775DC0091DC9C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7643F29A775DC0091DC9C /* Connection.swift */; };
@@ -38,6 +41,9 @@
 		2B4CE31029B3862300F48887 /* WebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewController.swift; sourceTree = "<group>"; };
 		2B8AFEC529B38DAB00697031 /* TelegraphNetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegraphNetService.swift; sourceTree = "<group>"; };
 		2B97912229B5E69B00C839E2 /* SwifterNetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterNetService.swift; sourceTree = "<group>"; };
+		2B97912C29B70D3000C839E2 /* ServerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerVC.swift; sourceTree = "<group>"; };
+		2B97912E29B70D3A00C839E2 /* ClientVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientVC.swift; sourceTree = "<group>"; };
+		2B97913029B72D4200C839E2 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		2BF7643B29A773120091DC9C /* ServerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListener.swift; sourceTree = "<group>"; };
 		2BF7643D29A773450091DC9C /* ClientListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListener.swift; sourceTree = "<group>"; };
 		2BF7643F29A775DC0091DC9C /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
@@ -81,12 +87,16 @@
 				2BF7643A29A772D90091DC9C /* Connections */,
 				2B4A0D7F29A5DB94000E2448 /* AppDelegate.swift */,
 				2B4A0D8129A5DB94000E2448 /* SceneDelegate.swift */,
+				2BF7644329A7EA920091DC9C /* Extensions.swift */,
 				2B4A0D8329A5DB94000E2448 /* ViewController.swift */,
 				2B4A0D8529A5DB95000E2448 /* Main.storyboard */,
 				2B4A0D8829A5DB97000E2448 /* Assets.xcassets */,
 				2B4A0D8A29A5DB97000E2448 /* LaunchScreen.storyboard */,
 				2B4A0D8D29A5DB97000E2448 /* Info.plist */,
 				2B4CE31029B3862300F48887 /* WebviewController.swift */,
+				2B97912C29B70D3000C839E2 /* ServerVC.swift */,
+				2B97912E29B70D3A00C839E2 /* ClientVC.swift */,
+				2B97913029B72D4200C839E2 /* TextViewController.swift */,
 			);
 			path = TMSDemo;
 			sourceTree = "<group>";
@@ -97,7 +107,6 @@
 				2BF7643B29A773120091DC9C /* ServerListener.swift */,
 				2BF7643D29A773450091DC9C /* ClientListener.swift */,
 				2BF7643F29A775DC0091DC9C /* Connection.swift */,
-				2BF7644329A7EA920091DC9C /* Extensions.swift */,
 				2BF7644B29ABB9390091DC9C /* Protocols.swift */,
 				2BF7644D29ABBAD20091DC9C /* Browser.swift */,
 				2B8AFEC529B38DAB00697031 /* TelegraphNetService.swift */,
@@ -189,6 +198,9 @@
 				2B4A0D8429A5DB94000E2448 /* ViewController.swift in Sources */,
 				2BF7644029A775DC0091DC9C /* Connection.swift in Sources */,
 				2BF7644E29ABBAD20091DC9C /* Browser.swift in Sources */,
+				2B97912D29B70D3000C839E2 /* ServerVC.swift in Sources */,
+				2B97913129B72D4200C839E2 /* TextViewController.swift in Sources */,
+				2B97912F29B70D3A00C839E2 /* ClientVC.swift in Sources */,
 				2BF7644429A7EA920091DC9C /* Extensions.swift in Sources */,
 				2B4A0D8029A5DB94000E2448 /* AppDelegate.swift in Sources */,
 				2BF7643C29A773120091DC9C /* ServerListener.swift in Sources */,

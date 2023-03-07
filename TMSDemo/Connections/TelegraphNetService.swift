@@ -9,8 +9,11 @@ import Foundation
 import Telegraph
 
 class TelegraphNetService: NSObject {
+    
     private var netService: NetService?
     private var httpServer = Server()
+    
+    private var listenerDelegate: ServerListenerDelegate?
     
     let name: String
     let port: Int32
@@ -37,34 +40,44 @@ class TelegraphNetService: NSObject {
         super.init()
         
         self.httpServer.delegate = self
-        self.httpServer.route(.GET, "status") {
-            (.ok, "[custom] Server is running")
+        self.httpServer.route(.GET, "status") { [weak self] request in
+            self?.send(request: request)
+            return .init(.ok, content: "[custom] Server is running")
         }
-        self.httpServer.route(.GET, "uri") { request in
+        self.httpServer.route(.GET, "uri") { [weak self] request in
+            self?.send(request: request)
             var items: [String: String] = [:]
             request.uri.queryItems?.forEach { items[$0.name] = $0.value }
             return .init(.ok, content: "[custom] your request query is \(items)")
         }
-        self.httpServer.route(.POST, "headers") { request in
-            .init(.ok, content: "headers are \(request.headers)")
+        self.httpServer.route(.POST, "headers") { [weak self] request in
+            self?.send(request: request)
+            return .init(.ok, content: "headers are \(request.headers)")
         }
-        self.httpServer.route(.POST, "json", handlePost)
-        self.httpServer.route(.GET, "post/:name") { request in
+        self.httpServer.route(.POST, "json", handleBody)
+        self.httpServer.route(.GET, "post/:name") { [weak self] request in
+            self?.send(request: request)
             let name = request.params["name"]
             return .init(.ok, content: "[custom] your request arg is \(String(describing: name))")
         }
-        self.httpServer.route(.GET, "secret/*") { .forbidden }
-        self.httpServer.route(.GET, "redirect") {
+        self.httpServer.route(.GET, "secret/*") { [weak self] request in
+            self?.send(request: request)
+            return .init(.forbidden)
+        }
+        self.httpServer.route(.GET, "redirect") { [weak self] request in
+            self?.send(request: request)
             let response = HTTPResponse(.temporaryRedirect)
             response.headers.location = "https://www.google.com"
             return response
         }
     }
     
-    func start(webSocketDelegate: ServerWebSocketDelegate? = nil) {
+    func start(listenerDelegate: ServerListenerDelegate?) {
         do {
-            if let delegate = httpServer.webSocketDelegate {
+            if let delegate = listenerDelegate {
+                self.listenerDelegate = delegate
                 httpServer.webSocketDelegate = delegate
+                httpServer.webSocketConfig.pingInterval = 5
             }
             
             try httpServer.start(port: Endpoint.Port(port))
@@ -81,21 +94,28 @@ class TelegraphNetService: NSObject {
         netService = nil
     }
     
-    func handlePost(request: HTTPRequest) -> HTTPResponse {
-        if let dict = try? JSONSerialization.jsonObject(with: request.body, options: []) as? [String: Any],
-           let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted),
-           let jsonString = String(data: jsonData, encoding: .ascii) {
-            
-            return .init(.ok, content: "[custom] your request body is \(jsonString)")
-        } else {
-            return .init(.init(code: 401, phrase: "Bad Request Body"), content: "[custom] your request body is bad")
+    func handleBody(request: HTTPRequest) -> HTTPResponse {
+        send(request: request)
+        
+        guard !request.body.isEmpty else {
+            return .init(.badRequest, content: "Request Body is empty!")
         }
+        
+        do {
+            
+            return .init(.ok, content: "[custom] your request body is \(try request.bodyAsString())")
+        } catch let error {
+            return .init(.init(code: 502, phrase: "Bad Request Body"), content: "[custom] \(error.localizedDescription)")
+        }
+    }
+    
+    func send(request: HTTPRequest) {
+        listenerDelegate?.onIncoming(request: request)
     }
 }
 
 extension TelegraphNetService: ServerDelegate {
     func serverDidStop(_ server: Telegraph.Server, error: Error?) {
-        print("serverDidStop server: \(server)")
         print("serverDidStop error \(String(describing: error))")
     }
 }

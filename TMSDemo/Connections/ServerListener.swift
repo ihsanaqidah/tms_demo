@@ -8,6 +8,10 @@
 import Foundation
 import Telegraph
 
+protocol ServerListenerDelegate: ServerWebSocketDelegate {
+    func onIncoming(request: HTTPRequest)
+}
+
 class ServerListener {
     
     private(set) var delegate: ServerListenerDelegate?
@@ -25,13 +29,12 @@ class ServerListener {
         webNetService.port
     }
     
-    init(delegate: ServerListenerDelegate?) {
-        self.delegate = delegate
+    init() {
         self.webNetService = TelegraphNetService(name: "TMS Demo", port: 8080, serviceType: "_tms._tcp")
     }
     
-    func start() throws {
-        webNetService.start()
+    func start(delegate: ServerListenerDelegate?) throws {
+        webNetService.start(listenerDelegate: delegate)
     }
     
     func stop() {
