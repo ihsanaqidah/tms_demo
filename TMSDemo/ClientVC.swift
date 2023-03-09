@@ -100,7 +100,10 @@ class ClientVC: UIViewController {
     @IBAction func didTapConnect(_ sender: Any?) {
         if clientListener.isRunning {
             clientListener.stop()
-            webSocketClient?.disconnect()
+            
+            if isWebsocketEnabled {
+                webSocketClient?.disconnect()
+            }
         } else {
             clientListener = ClientListener(delegate: self)
             clientListener.start()
@@ -121,7 +124,7 @@ class ClientVC: UIViewController {
     }
     
     func connectWebSocketClient() {
-        guard let url = serverUrl else { return }
+        guard isWebsocketEnabled, let url = serverUrl else { return }
         
         webSocketClient = try! WebSocketClient(url: url)
         webSocketClient?.delegate = self

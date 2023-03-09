@@ -1,44 +1,34 @@
 import UIKit
 import Network
 
+var isWebsocketEnabled: Bool = false
+
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var websocketBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "v\(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))"
     }
     
-//    @IBAction func didTapWebview(_ sender: Any) {
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "webview") as! WebviewController
-//
-//        if let url = serverUrl, var comp = URLComponents(url: url, resolvingAgainstBaseURL: true) {
-//            comp.path = "/status"
-//            vc.setDefault(url: comp.url!)
-//        }
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    @IBAction func didTapWebsocket(_ sender: Any) {
+        isWebsocketEnabled = !isWebsocketEnabled
+        if isWebsocketEnabled {
+            websocketBtn.setTitle("Turn Off Websocket", for: .normal)
+        } else {
+            websocketBtn.setTitle("Turn On Websocket", for: .normal)
+        }
+    }
 }
 
-//extension ViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reusableCell") else {
-//            return UITableViewCell()
-//        }
-//
-//        cell.textLabel?.text = ""
-//        cell.detailTextLabel?.text = ""
-//
-//        return cell
-//    }
-//}
-//
-//extension ViewController: ConnectionDelegate {
-//
-//    func onIncoming(string: String) {
-//        showAlert(message: string)
-//    }
-//}
+extension Bundle {
+    var versionNumber: String {
+        return infoDictionary?["CFBundleShortVersionString"] as? String ?? "0"
+    }
+
+    var buildNumber: String {
+        return infoDictionary?["CFBundleVersion"] as? String ?? "0"
+    }
+}

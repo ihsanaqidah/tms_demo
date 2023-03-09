@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVy-m5-IC6">
-                                        <rect key="frame" x="0.0" y="0.0" width="196" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Server Page"/>
@@ -46,12 +46,21 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etj-X8-Xu2">
-                                        <rect key="frame" x="197" y="0.0" width="196" height="44"/>
+                                        <rect key="frame" x="131.33333333333331" y="0.0" width="130.33333333333331" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Client Page"/>
                                         <connections>
                                             <segue destination="3L0-9k-cDq" kind="show" id="9TY-2P-cP9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hr0-cj-6sc">
+                                        <rect key="frame" x="262.66666666666669" y="0.0" width="130.33333333333331" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Turn On Websocket"/>
+                                        <connections>
+                                            <action selector="didTapWebsocket:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hJc-UN-3du"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -84,6 +93,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Homepage" id="8EK-Xu-IzZ"/>
+                    <connections>
+                        <outlet property="websocketBtn" destination="Hr0-cj-6sc" id="TUF-Da-tfh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

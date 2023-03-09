@@ -74,11 +74,12 @@ class TelegraphNetService: NSObject {
     
     func start(listenerDelegate: ServerListenerDelegate?) {
         do {
-            if let delegate = listenerDelegate {
-                self.listenerDelegate = delegate
-                httpServer.webSocketDelegate = delegate
-                httpServer.webSocketConfig.pingInterval = 5
+            if isWebsocketEnabled {
+                httpServer.webSocketDelegate = listenerDelegate
+                httpServer.webSocketConfig.pingInterval = 10
             }
+            
+            self.listenerDelegate = listenerDelegate
             
             try httpServer.start(port: Endpoint.Port(port))
             self.netService = NetService(domain: self.domain, type: self.serviceType, name: name, port: port)
