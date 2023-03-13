@@ -1,9 +1,3 @@
 # tms_demo
-Server side
 
-![Simulator Screen Shot - iPhone 14 - 2023-02-24 at 06 36 55](https://user-images.githubusercontent.com/109054617/221088116-c9efe98f-fb76-4151-85e0-4ab91a5d8bb2.png)
-
-Client side
-
-![IMG_C76E7BEC6CD4-1](https://user-images.githubusercontent.com/109054617/221088313-c88dcf6c-f596-4e1c-a6f7-8dd8ed61d949.jpeg)
-
+![Simulator Screen Shot - iPhone 14 - 2023-03-13 at 15 44 07](https://user-images.githubusercontent.com/109054617/224650457-b59e25aa-179a-41df-98d8-faa5c1b6cd68.png)
